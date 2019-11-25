@@ -21,15 +21,15 @@ $("#payment-button").click(function(e) {
         e.preventDefault();
         e.stopPropagation();
 
-        payment = getElementById("cc-outlet")  + " payment " + getElementById("cc-payment");
+        payment = getElementById("cc-outlet")  + " - £" + getElementById("cc-payment");
         count = getChecked()
         for (i =0;i<count;i++) {
             acceptedProbability = Math.floor(Math.random() * 10);
             rejected = (acceptedProbability>6) ? true : false;
             if (rejected) {
-                addNewItemToList(payment + ' rejected' + ' - ' + new Date().toLocaleTimeString() , "red");
+                addNewItemToList(payment + ' - rejected ' + '  - ' + new Date().toLocaleTimeString() , "red");
             } else {
-                addNewItemToList(payment + ' approved' + ' - ' + new Date().toLocaleTimeString() , "green" );
+                addNewItemToList(payment + ' - approved' + ' - ' + new Date().toLocaleTimeString() , "green" );
             }
 
 
