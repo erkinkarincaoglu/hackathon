@@ -19,6 +19,8 @@ $("#payment-button").click(function(e) {
 
 
         alert ( getElementById("cc-outlet")  + " payment " + getElementById("cc-payment"));
+        e.preventDefault();
+        e.stopPropagation();
 
 
 
