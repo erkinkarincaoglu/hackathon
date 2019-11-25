@@ -21,18 +21,36 @@ $("#payment-button").click(function(e) {
         e.preventDefault();
         e.stopPropagation();
 
+
+
+
+
         payment = getElementById("cc-outlet")  + " - £" + getElementById("cc-payment");
         count = getChecked()
         for (i =0;i<count;i++) {
             acceptedProbability = Math.floor(Math.random() * 10);
             rejected = (acceptedProbability>6) ? true : false;
+
+            // https://github.com/axios/axios
+//            axios.get('https://freegeoip.app/json/')
+//              .then(function (response) {
+//                // handle success
+//                console.log(response);
+//              })
+//              .catch(function (error) {
+//                // handle error
+//                console.log(error);
+//              })
+//              .finally(function () {
+//                // always executed
+//              });
+
+
             if (rejected) {
                 addNewItemToList(payment + ' - rejected ' + '  - ' + new Date().toLocaleTimeString() , "red");
             } else {
                 addNewItemToList(payment + ' - approved' + ' - ' + new Date().toLocaleTimeString() , "green" );
             }
-
-
         }
     }
     
