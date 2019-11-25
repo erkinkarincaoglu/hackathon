@@ -18,9 +18,12 @@ $("#payment-button").click(function(e) {
     else {
 
 
-        alert ( getElementById("cc-outlet")  + " payment " + getElementById("cc-payment"));
         e.preventDefault();
         e.stopPropagation();
+
+        payment = getElementById("cc-outlet")  + " payment " + getElementById("cc-payment");
+        //alert ( getElementById("cc-outlet")  + " payment " + getElementById("cc-payment"));
+        addNewItemToList(payment);
 
 
 
@@ -30,7 +33,13 @@ $("#payment-button").click(function(e) {
 });
 
 
-
+function addNewItemToList(itemtext) {
+    var ul = document.getElementById("payments");
+    var li = document.createElement("li");
+    li.classList.add('list-group-item');
+    li.appendChild(document.createTextNode(itemtext));
+    ul.appendChild(li);
+}
 function getElementById(id){
 
     return document.getElementById(id).value;
