@@ -27,23 +27,27 @@ $("#payment-button").click(function(e) {
 
         payment = getElementById("cc-outlet")  + " - £" + getElementById("cc-payment");
         count = getChecked()
+        var amount = getElementById("cc-payment");
+        var outlet = getElementById("cc-outlet");
+
+
         for (i =0;i<count;i++) {
             acceptedProbability = Math.floor(Math.random() * 10);
             rejected = (acceptedProbability>6) ? true : false;
 
+            var status = rejected ? 'INSUFFICIENT CREDIT' : 'VALID';
             // https://github.com/axios/axios
-//            axios.get('https://freegeoip.app/json/')
-//              .then(function (response) {
-//                // handle success
-//                console.log(response);
-//              })
-//              .catch(function (error) {
-//                // handle error
-//                console.log(error);
-//              })
-//              .finally(function () {
-//                // always executed
-//              });
+            axios.post('http://172.16.0.133:8080/ra-cqpr/addRaCqpr', {
+                status: status,
+                payerAmount: amount,
+                streamlineId: outlet
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
 
 
             if (rejected) {
@@ -53,7 +57,7 @@ $("#payment-button").click(function(e) {
             }
         }
     }
-    
+
     form.addClass('was-validated');
 });
 
@@ -85,4 +89,3 @@ function getChecked(){
      return 10;
   }
 }
-
